@@ -15,9 +15,8 @@
   overflow: hidden;
   object-fit: cover;
   transition: transform 0.3s ease;
-  width: calc((100% - 72px) / 3);
-  max-width: 360px;
-  flex-grow: 1;
+
+  width: 360px;
 }
 
 .gallery-item:hover {
@@ -25,4 +24,21 @@
 }
 .gallery-item:focus {
   transform: scale(1.05);
+}
+@media (max-width: 1200px) {
+  .gallery-item {
+    width: calc((100% - 48px) / 3);
+  }
+}
+
+@media (max-width: 900px) {
+  .gallery-item {
+    width: calc((100% - 24px) / 2);
+  }
+}
+
+@media (max-width: 600px) {
+  .gallery-item {
+    width: 100%;
+  }
 }
