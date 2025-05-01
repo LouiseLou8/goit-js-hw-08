@@ -10,11 +10,14 @@
 
 .gallery-item {
   position: relative;
-  width: 360px;
+
   height: 200px;
   overflow: hidden;
   object-fit: cover;
   transition: transform 0.3s ease;
+  width: calc((100% - 72px) / 3);
+  max-width: 360px;
+  flex-grow: 1;
 }
 
 .gallery-item:hover {
