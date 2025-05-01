@@ -64,6 +64,7 @@ const images = [
   },
 ];
 const gallery = document.querySelector('.gallery');
+let instance;
 
 function imageTamplate(image) {
   return `<li class="gallery-item">
@@ -86,3 +87,33 @@ function renderImages() {
   gallery.insertAdjacentHTML('beforeend', markup);
 }
 renderImages();
+
+function openModal(image) {
+  instance = basicLightbox.create(`
+    <div class="modal">
+        <img src="${image.original}" alt="${image.description}" />
+    </div>
+`);
+
+  instance.show();
+  document.addEventListener('keydown', handleCloseModal);
+}
+function closeModal() {
+  instance.close();
+  document.removeEventListener('keydown', handleCloseModal);
+}
+
+function handleCloseModal(event) {
+  if (event.code === 'Escape') {
+    closeModal();
+  }
+}
+document.addEventListener('click', event => {
+  if (event.target.nodeName !== 'IMG') {
+    return;
+  }
+  event.preventDefault();
+  openModal(
+    images.find(image => image.original === event.target.dataset.source)
+  );
+});
